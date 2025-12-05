@@ -1,0 +1,125 @@
+.players-list {
+    background: rgba(20, 20, 30, 0.9);
+    border-radius: 8px;
+    padding: 10px;
+    border: 2px solid #d4af37;
+    margin-bottom: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.players-list h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    color: #d4af37;
+    font-size: 1rem;
+    border-bottom: 1px solid #8e7326;
+    padding-bottom: 5px;
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.players-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.player-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 8px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.player-card.active-turn {
+    background: rgba(212, 175, 55, 0.1);
+    border-color: #d4af37;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+}
+
+.player-card.eliminated {
+    opacity: 0.5;
+    filter: grayscale(100%);
+}
+
+.player-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Reuse character colors from Board.css or define here */
+/* Reuse character colors from Board.css */
+.player-avatar.miss-scarlet {
+    background: radial-gradient(circle at 30% 30%, #e74c3c, #c0392b);
+    border-color: #c0392b;
+}
+
+.player-avatar.colonel-mustard {
+    background: radial-gradient(circle at 30% 30%, #f1c40f, #f39c12);
+    color: black;
+    border-color: #f39c12;
+}
+
+.player-avatar.mrs-white {
+    background: radial-gradient(circle at 30% 30%, #ecf0f1, #bdc3c7);
+    color: black;
+    border-color: #bdc3c7;
+}
+
+.player-avatar.mr-green {
+    background: radial-gradient(circle at 30% 30%, #2ecc71, #27ae60);
+    border-color: #27ae60;
+}
+
+.player-avatar.mrs-peacock {
+    background: radial-gradient(circle at 30% 30%, #3498db, #2980b9);
+    border-color: #2980b9;
+}
+
+.player-avatar.professor-plum {
+    background: radial-gradient(circle at 30% 30%, #9b59b6, #8e44ad);
+    border-color: #8e44ad;
+}
+
+.player-info {
+    flex: 1;
+}
+
+.player-name {
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: #e0e0e0;
+    font-family: 'Playfair Display', serif;
+}
+
+.character-name {
+    font-size: 0.8rem;
+    color: #bdc3c7;
+}
+
+.turn-indicator {
+    font-size: 0.7rem;
+    color: #2ecc71;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.eliminated-badge {
+    font-size: 0.7rem;
+    color: #e74c3c;
+    font-weight: bold;
+    text-transform: uppercase;
+}

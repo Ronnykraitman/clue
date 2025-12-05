@@ -1,0 +1,133 @@
+.victory-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(8px);
+    animation: fadeIn 0.5s ease-out;
+}
+
+.victory-modal {
+    background: #1a1a1a;
+    border: 4px solid #d4af37;
+    padding: 40px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 600px;
+    width: 90%;
+    color: #f1c40f;
+    box-shadow: 0 0 50px rgba(212, 175, 55, 0.5);
+    font-family: 'Playfair Display', serif;
+    position: relative;
+    overflow: hidden;
+    animation: scaleUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.victory-modal h1 {
+    font-size: 3rem;
+    margin: 0 0 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    border-bottom: 2px solid #d4af37;
+    padding-bottom: 15px;
+}
+
+.winner-announcement {
+    margin: 30px 0;
+}
+
+.winner-announcement h2 {
+    font-size: 1.5rem;
+    color: #bdc3c7;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.winner-name {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 10px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.result-message {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+    font-style: italic;
+    margin-bottom: 30px;
+}
+
+.restart-button {
+    background: linear-gradient(135deg, #d4af37 0%, #f1c40f 100%);
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #1a1a1a;
+    border-radius: 50px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.restart-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(241, 196, 15, 0.4);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Confetti effect using pseudo-elements */
+.human-win::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: radial-gradient(#f1c40f 2px, transparent 2px), radial-gradient(#fff 2px, transparent 2px);
+    background-size: 30px 30px;
+    background-position: 0 0, 15px 15px;
+    opacity: 0.1;
+    animation: rotate 60s linear infinite;
+    z-index: -1;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}

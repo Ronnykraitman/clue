@@ -15,12 +15,12 @@ function Hand({ gameState, humanCharacter }) {
                     <div key={index} className={`card ${card.type}`}>
                         <div className="card-image-container">
                             <img
-                                src={card.type === 'room' ? `/images/rooms/${card.name}.png` : `/images/cards/${card.name}.png`}
+                                src={card.type === 'room' ? `${import.meta.env.BASE_URL}images/rooms/${card.name}.png` : `${import.meta.env.BASE_URL}images/cards/${card.name}.png`}
                                 alt={card.name}
                                 className="card-image"
                                 onError={(e) => {
-                                    e.target.onerror = null;
                                     e.target.style.display = 'none';
+                                    e.target.nextSibling.style.display = 'flex'; // Show fallback
                                     e.target.parentElement.classList.add('no-image');
                                 }}
                             />

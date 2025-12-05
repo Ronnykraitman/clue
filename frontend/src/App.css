@@ -40,7 +40,7 @@
 
 .board-container {
     flex: 1;
-    background: url('/images/board/board.png') no-repeat center center;
+    background: url('./assets/board/board.png') no-repeat center center;
     background-size: cover;
     border: 5px solid #5d4037;
     border-radius: 8px;
@@ -224,7 +224,7 @@
     justify-content: flex-start;
     padding-top: 15vh;
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('/images/rooms/clue_ai.png');
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('./assets/clue_ai.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

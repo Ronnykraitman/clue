@@ -42,7 +42,7 @@ function Board({ gameState, onMove }) {
                                 className={`room ${isAvailable ? 'available' : ''}`}
                                 onClick={() => handleRoomClick(roomName)}
                                 style={{
-                                    backgroundImage: `url("/images/rooms/${roomName}.png")`,
+                                    backgroundImage: `url("${import.meta.env.BASE_URL}images/rooms/${roomName}.png")`,
                                     backgroundSize: 'cover',
                                     backgroundPosition: 'center'
                                 }}

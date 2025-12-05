@@ -17,7 +17,16 @@ load_dotenv()
 
 from src.clue.models import GameConfig, MoveRequest, SuspicionRequest, AccusationRequest, GameState, GamePhase
 from src.clue.game_logic import ClueGame, ROOMS, WEAPONS, SUSPECTS
-from src.clue.agents import ClueAI
+from src.clue.game_logic import ClueGame, ROOMS, WEAPONS, SUSPECTS
+
+try:
+    from src.clue.agents import ClueAI
+except ImportError as e:
+    print(f"WARNING: Could not import ClueAI: {e}", flush=True)
+    ClueAI = None
+except Exception as e:
+    print(f"WARNING: Error importing ClueAI: {e}", flush=True)
+    ClueAI = None
 
 app = FastAPI()
 
@@ -30,7 +39,13 @@ app.add_middleware(
 )
 
 game = ClueGame()
-ai_interface = ClueAI()
+game = ClueGame()
+try:
+    ai_interface = ClueAI()
+    print("AI Interface initialized successfully", flush=True)
+except Exception as e:
+    print(f"FAILED to initialize AI Interface: {e}", flush=True)
+    ai_interface = None
 
 @app.get("/")
 async def root():
@@ -118,7 +133,15 @@ async def play_ai_turn():
     
     # 2. Decide Move
     if valid_moves:
-        destination = ai_interface.decide_move(current_player, valid_moves, game.state)
+    # 2. Decide Move
+    if valid_moves:
+        if ai_interface:
+            destination = ai_interface.decide_move(current_player, valid_moves, game.state)
+        else:
+            import random
+            destination = random.choice(valid_moves)
+            print("AI Interface not available, falling back to random move")
+        
         game.move_player(game.state.current_player_index, destination)
     else:
         game.state.logs.append(f"{current_player.name} has no valid moves.")
@@ -128,13 +151,23 @@ async def play_ai_turn():
     # 3. Decide Action (Suspect)
     # AI will always try to suspect if in a room
     # (Simplified: AI doesn't Accuse yet to avoid early game over)
-    suspicion = ai_interface.decide_suspicion(
-        current_player, 
-        current_player.position, 
-        game.state, 
-        SUSPECTS, 
-        WEAPONS
-    )
+    # (Simplified: AI doesn't Accuse yet to avoid early game over)
+    if ai_interface:
+        suspicion = ai_interface.decide_suspicion(
+            current_player, 
+            current_player.position, 
+            game.state, 
+            SUSPECTS, 
+            WEAPONS
+        )
+    else:
+        # Fallback random suspicion
+        import random
+        suspicion = {
+            "suspect": random.choice(SUSPECTS),
+            "weapon": random.choice(WEAPONS),
+            "room": current_player.position
+        }
     
     result = game.handle_suspicion(
         suspicion["suspect"], 
@@ -158,7 +191,11 @@ async def play_ai_turn():
 
     # 4. Decide Action (Accuse)
     # Now check if AI wants to accuse based on new info
-    accusation = ai_interface.decide_accusation(current_player, game.state)
+    # 4. Decide Action (Accuse)
+    # Now check if AI wants to accuse based on new info
+    accusation = None
+    if ai_interface:
+        accusation = ai_interface.decide_accusation(current_player, game.state)
     
     if accusation:
         game.handle_accusation(

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Gold Magnifying Glass -->
+  <defs>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#B8860B;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Handle -->
+  <path d="M65 65 L90 90 A 5 5 0 0 1 85 95 L60 70 Z" fill="#8B4513" stroke="black" stroke-width="2" />
+  
+  <!-- Glass Rim -->
+  <circle cx="40" cy="40" r="30" fill="none" stroke="url(#gold)" stroke-width="8" />
+  
+  <!-- Glass Lens (Generic Blue-ish reflection) -->
+  <circle cx="40" cy="40" r="26" fill="#E0F7FA" fill-opacity="0.4" />
+  
+  <!-- Shine on Glass -->
+  <path d="M25 25 Q 40 10 55 25" stroke="white" stroke-width="3" fill="none" opacity="0.6" />
+</svg>

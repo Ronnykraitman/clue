@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:8001';
+const API_URL = import.meta.env.PROD ? '/clue/api' : 'http://localhost:8001';
 
 export const api = {
     startGame: (humanCharacter) => axios.post(`${API_URL}/game/start`, { human_character: humanCharacter }),
